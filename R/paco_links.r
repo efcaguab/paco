@@ -9,7 +9,6 @@ paco_links <- function(D, .parallel = FALSE, .progress = "none", ...)
 {
    HP.ones <- which(D$HP > 0, arr.ind=TRUE)
    SQres.jackn <- matrix(rep(NA, sum(D$HP)^2), sum(D$HP))# empty matrix of jackknifed squared residuals
-   colnames(SQres.jackn) <- paste(rownames(D$proc$X),rownames(D$proc$Yrot), sep="-") #colnames identify the H-P link
    t.critical = qt(0.975,sum(D$HP)-1) #Needed to compute 95% confidence intervals.
    nlinks <- sum(D$HP)
    
@@ -29,7 +28,7 @@ paco_links <- function(D, .parallel = FALSE, .progress = "none", ...)
      } 
      pb$term ()
    }
-   
+   colnames(SQres.jackn) <- paste(rownames(D$proc$X),rownames(D$proc$Yrot), sep="-") #colnames identify the H-P link
    SQres.jackn <- SQres.jackn^2 #Jackknifed residuals are squared
    SQres <- (residuals(D$proc))^2 # Vector of original square residuals
    #jackknife calculations:
