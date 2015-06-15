@@ -39,7 +39,7 @@ coordpcoa <-function (D, correction = "none", rn = NULL)
         k <- length(which(eig > epsilon))
         rel.eig <- eig[1:k]/trace
         cum.eig <- cumsum(rel.eig)
-        vectors <- sweep(D.eig$vectors[, 1:k], 2, sqrt(eig[1:k]), 
+        vectors <- sweep(D.eig$vectors[, 1:k, drop = FALSE], 2, sqrt(eig[1:k]), 
             FUN = "*")
         bs <- bstick.def(k)
         cum.bs <- cumsum(bs)
